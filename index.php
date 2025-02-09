@@ -29,6 +29,9 @@ include './helper/helper.php';
          case 'auth-login':
          $content = './controllers/auth/auth-login.php';
          break;
+         case 'add_blog':
+         $content = './controllers/blogs/add_blogs.php';
+         break;
      default:
          $content = './view/errors/404.php'; 
          break;

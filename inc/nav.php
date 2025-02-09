@@ -19,12 +19,15 @@
                             
                             
                         ?> 
-                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="./view/auth/logout.php" >LOGOUT</a></li>
-                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" ><?=($_SESSION['username'])?></a></li>
+                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="./index.php?page=add_blog" >Add Blog</a></li>
+
+                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" ><?=($_SESSION['username'])?></a></li>
+                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="./index.php?page=logout" >LOGOUT</a></li>
+                    
 
                         <?php else: ?> 
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="./view/auth/login.php">LOGIN</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="./view/auth/register.php">Register</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="./index.php?page=login">LOGIN</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="./index.php?page=register">Register</a></li>
                     <?php endif; ?>
                     </ul>
                 </div>
