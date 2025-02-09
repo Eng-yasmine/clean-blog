@@ -20,6 +20,15 @@ include './helper/helper.php';
      case 'sign-up':
          $content = './controllers/auth/sign-up.php';
          break;
+         case 'login':
+         $content = './view/auth/login.php';
+         break;
+         case 'logout':
+         $content = './controllers/auth/logout.php';
+         break;
+         case 'auth-login':
+         $content = './controllers/auth/auth-login.php';
+         break;
      default:
          $content = './view/errors/404.php'; 
          break;

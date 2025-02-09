@@ -18,8 +18,9 @@
                               if(isset($_SESSION['username'])):
                             
                             
-                        ?>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="./view/auth/logout.php"><?=($_SESSION['username'])?></a></li>
+                        ?> 
+                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="./view/auth/logout.php" >LOGOUT</a></li>
+                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" ><?=($_SESSION['username'])?></a></li>
 
                         <?php else: ?> 
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="./view/auth/login.php">LOGIN</a></li>
