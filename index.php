@@ -1,58 +1,57 @@
-<?php 
-require_once 'config/db_connection.php'; 
+<?php
+require_once 'config/db_connection.php';
 include './helper/helper.php';
 
-
-
- include 'inc/header.php'; 
-
+include 'inc/header.php';
 
  $page = isset($_GET['page']) ? $_GET['page'] : 'home';
- $content = '';
  
- switch ($page) {
-     case 'home':
-         $content = './view/blogs/home.php';
-         break;
-     case 'register':
-         $content = './view/auth/register.php';
-         break;
-     case 'sign-up':
-         $content = './controllers/auth/sign-up.php';
-         break;
-         case 'login':
-         $content = './view/auth/login.php';
-         break;
-         case 'logout':
-         $content = './controllers/auth/logout.php';
-         break;
-         case 'auth-login':
-         $content = './controllers/auth/auth-login.php';
-         break;
-         case 'add_blog':
-         $content = './controllers/blogs/add_blogs.php';
-         break;
-     default:
-         $content = './view/errors/404.php'; 
-         break;
- }
- 
- if (file_exists($content)) {
-     include $content;
- } else {
-     include './view/errors/404.php'; 
-     exit ;
- }
+//var_dump($_SERVER['REQUEST_URI']);
+$content = "";
+switch ($page) {
+    case 'home':
+        $content = 'view/blogs/home.php';
+        break;
+    case 'register':
+        $content = 'view/auth/register.php';
+        break;
+    case 'login':
+        $content = 'view/auth/login.php';
+        break;
+    case 'logout':
+        $content = 'view/auth/login.php';
+        break;
+    case 'blogs':
+        $content = 'view/blogs/index.php';
+        break;
+    case 'contact':
+        $content = 'view/blogs/contact.php';
+        break;
+    case 'about':
+        $content = 'view/blogs/about.php';
+            break;
+    case 'post':
+        $content = './post.php';
+            break;
+    case 'auth_register':
+        $content = 'auth_register.php';
+            break;
+        
+    default:
+        $content = 'index.php';
+        break;
+}
 
-
-
-
-
-?>
-
-
-<?php 
-include $content;
+if (file_exists($content)) {
+    // var_dump($content);
+    include $content;
+    exit;
+   
+}
+// } else {
+//     include './view/errors/404.php';
+//     exit;
+// }
 
 ?>
 

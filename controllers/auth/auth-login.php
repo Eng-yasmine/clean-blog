@@ -1,12 +1,13 @@
 <?php
-
+error_reporting(E_ALL);
+ini_set('display_errors',1);
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     if(isset($_SESSION['username'])){
         header("location:index.php");
         exit;
     }
-    $email = trim($_POST['email']) ;
-    $password = trim($_POST['password']) ;
+    $email = trim(htmlspecialchars(htmlentities(($_POST['email']))));
+    $password = trim(htmlspecialchars(htmlentities($_POST['password'])));
 
     if(empty($email) || empty($password)){
         $_SESSION['errors'] = "this field is required" ;

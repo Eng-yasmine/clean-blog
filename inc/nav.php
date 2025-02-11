@@ -8,21 +8,22 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="./index.php">Home</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="./view/blogs/about.php">About</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="post.php">Sample Post</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="./view/blogs/contact.php">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="./index.php?page=home">Home</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="./index.php?page=about">About</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="./index.php?page=post">Sample Post</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="./index.php?page=contact">Contact</a></li>
 
 
                         <?php
-                              if(isset($_SESSION['username'])):
+                             if(isset($_SESSION['username'])):
                             
-                            
+                           // var_dump($_SERVER['DOCUMENT_ROOT']);
+
                         ?> 
-                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="./index.php?page=add_blog" >Add Blog</a></li>
+                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="../index.php?page=add_blog" >Add Blog</a></li>
 
                          <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" ><?=($_SESSION['username'])?></a></li>
-                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="./index.php?page=logout" >LOGOUT</a></li>
+                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="../index.php?page=logout" >LOGOUT</a></li>
                     
 
                         <?php else: ?> 
