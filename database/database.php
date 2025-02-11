@@ -13,7 +13,7 @@ if (!$conn) {
 
 // إنشاء قاعدة البيانات إذا لم تكن موجودة
 if (!mysqli_select_db($conn, DATABASE_NAME)) {
-    $sql = "CREATE DATABASE blogs";
+    $sql = "CREATE DATABASE IF NOT EXISTS blogs";
     if (!mysqli_query($conn, $sql)) {
         die("فشل إنشاء قاعدة البيانات: " . mysqli_error($conn));
     }
@@ -23,13 +23,16 @@ if (!mysqli_select_db($conn, DATABASE_NAME)) {
 // إنشاء جدول users
 $table_sql_user = "CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255),
-    email VARCHAR(255),
-    password VARCHAR(255)
+    phone VARCHAR(25),
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL
 )";
 $query1 = mysqli_query($conn, $table_sql_user);
 if (!$query1) {
     die("فشل تنفيذ الاستعلام 1: " . mysqli_error($conn));
+} else {
+    echo "تم إنشاء جدول users بنجاح!<br>";
 }
 
 // إنشاء جدول posts
@@ -43,9 +46,11 @@ $table_sql_post = "CREATE TABLE IF NOT EXISTS posts (
 $query2 = mysqli_query($conn, $table_sql_post);
 if (!$query2) {
     die("فشل تنفيذ الاستعلام 2: " . mysqli_error($conn));
+} else {
+    echo "تم إنشاء جدول posts بنجاح!<br>";
 }
 
-// CREATE TABLE OF comment
+// إنشاء جدول comment
 $table_sql_comment = "CREATE TABLE IF NOT EXISTS comment (
     id INT AUTO_INCREMENT PRIMARY KEY,
     content TEXT,
@@ -56,22 +61,12 @@ $table_sql_comment = "CREATE TABLE IF NOT EXISTS comment (
 $query3 = mysqli_query($conn, $table_sql_comment);
 if (!$query3) {
     die("فشل تنفيذ الاستعلام 3: " . mysqli_error($conn));
+} else {
+    echo "تم إنشاء جدول comment بنجاح!<br>";
 }
 
 // إغلاق الاتصال
+// mysqli_close($conn);
 
-
-//echo "تم إنشاء الجداول بنجاح!";
+echo "تم تنفيذ جميع العمليات بنجاح!";
 ?>
-
-
-
-
-
-
-
-
-
-
-
-

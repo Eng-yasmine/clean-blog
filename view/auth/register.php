@@ -11,7 +11,12 @@ include '././inc/nav.php';
                         <div class="my-5">
                             
                            
-                            <form action="../../../index.php?page=auth_register" method="POST" id="registerForm">
+                            <form action="index.php?page=auth_register" method="POST" id="registerForm">
+                                <div class="form-floating">
+                                    
+                                    <h2><?php echo successmessage(); ?></h2>
+                                    <h2><?php echo errormessage(); ?></h2>
+                                </div>
                                 <div class="form-floating">
                                     <input class="form-control" name="name" id="name" type="text" placeholder="Enter your name..." />
                                     <label for="name">Name</label>

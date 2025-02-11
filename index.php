@@ -10,48 +10,39 @@ include 'inc/header.php';
 $content = "";
 switch ($page) {
     case 'home':
-        $content = 'view/blogs/home.php';
+    include 'view/blogs/home.php';
         break;
     case 'register':
-        $content = 'view/auth/register.php';
+    include 'view/auth/register.php';
         break;
     case 'login':
-        $content = 'view/auth/login.php';
+    include 'view/auth/login.php';
         break;
     case 'logout':
-        $content = 'view/auth/login.php';
+    include 'view/auth/login.php';
         break;
     case 'blogs':
-        $content = 'view/blogs/index.php';
+    include 'view/blogs/index.php';
         break;
     case 'contact':
-        $content = 'view/blogs/contact.php';
+    include 'view/blogs/contact.php';
         break;
     case 'about':
-        $content = 'view/blogs/about.php';
+    include 'view/blogs/about.php';
             break;
     case 'post':
-        $content = './post.php';
+    include './post.php';
             break;
     case 'auth_register':
-        $content = 'auth_register.php';
+    include 'controllers/auth/auth_register.php';
             break;
         
     default:
-        $content = 'index.php';
+    include 'index.php';
         break;
 }
 
-if (file_exists($content)) {
-    // var_dump($content);
-    include $content;
-    exit;
-   
-}
-// } else {
-//     include './view/errors/404.php';
-//     exit;
-// }
+
 
 ?>
 
