@@ -4,45 +4,52 @@ include './helper/helper.php';
 
 include 'inc/header.php';
 
- $page = isset($_GET['page']) ? $_GET['page'] : 'home';
- 
+$page = isset($_GET['page']) ? $_GET['page'] : 'home';
+
 //var_dump($_SERVER['REQUEST_URI']);
-$content = "";
+//$content = "";
 switch ($page) {
     case 'home':
-    include 'view/blogs/home.php';
+        include 'view/home.php';
         break;
     case 'register':
-    include 'view/auth/register.php';
+        include 'view/auth/register.php';
         break;
     case 'login':
-    include 'view/auth/login.php';
+        include 'view/auth/login.php';
         break;
     case 'logout':
-    include 'view/auth/login.php';
+        include 'view/auth/login.php';
         break;
     case 'blogs':
-    include 'view/blogs/index.php';
+        include 'view/blogs/index.php';
         break;
     case 'contact':
-    include 'view/blogs/contact.php';
+        include 'view/contact.php';
         break;
     case 'about':
-    include 'view/blogs/about.php';
-            break;
-    case 'post':
-    include './post.php';
-            break;
-    case 'auth_register':
-    include 'controllers/auth/auth_register.php';
-            break;
-    case 'auth-login':
-    include 'controllers/auth/auth-login.php';
-            break;
-        
-    default:
-    include 'index.php';
+        include 'view/about.php';
         break;
+    case 'post':
+        include 'view/post.php';
+        break;
+    case 'auth_register':
+        include 'controllers/auth/auth_register.php';
+        break;
+    case 'auth-login':
+        include 'controllers/auth/auth-login.php';
+        break;
+    case 'profil':
+        include 'view/profil.php';
+        break;
+        case 'add_blog':
+        include 'view/blogs/add_blog.php';
+        break;
+
+    default:
+        include 'index.php';
+        break;
+
 }
 
 

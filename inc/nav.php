@@ -22,7 +22,7 @@
                         ?> 
                      <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="../index.php?page=add_blog" >Add Blog</a></li>
 
-                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" ><?=($_SESSION['username'])?></a></li>
+                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="../index.php?page=profil" ><?=($_SESSION['username'])?></a></li>
                      <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="../index.php?page=logout" >LOGOUT</a></li>
                     
 

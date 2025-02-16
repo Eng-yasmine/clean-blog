@@ -15,7 +15,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $password = trim(htmlspecialchars(htmlentities($_POST['password'])));
 
     if (empty($email) || empty($password)) {
-        $_SESSION['errors'] = "this field is required" . $_SERVER['HTTP_PREFERE'];
+        $_SESSION['errors'] = "this field is required" . $_SERVER['HTTP_REFERER'];
         exit;
     }
 

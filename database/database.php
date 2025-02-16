@@ -26,7 +26,11 @@ $table_sql_user = "CREATE TABLE IF NOT EXISTS users (
     phone VARCHAR(25),
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
-    password VARCHAR(255) NOT NULL
+    password VARCHAR(255) NOT NULL,
+    role ENUM('admin','user') NOT NULL DEFAULT 'user',
+    visit_count INT DEFAULT 0 ,
+    last_visit TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )";
 $query1 = mysqli_query($conn, $table_sql_user);
 if (!$query1) {
@@ -38,10 +42,13 @@ if (!$query1) {
 // إنشاء جدول posts
 $table_sql_post = "CREATE TABLE IF NOT EXISTS posts (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL ,
     title VARCHAR(255),
     content TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    user_id INT
+    image VARCHAR(255) DEFAULT NULL ,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+    
 )";
 $query2 = mysqli_query($conn, $table_sql_post);
 if (!$query2) {
@@ -56,7 +63,9 @@ $table_sql_comment = "CREATE TABLE IF NOT EXISTS comment (
     content TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     post_id INT,
-    user_id INT
+    user_id INT,
+    FOREIGN KEY (post_id) REFERENCES posts(id),
+    FOREIGN KEY (user_id) REFERENCES users(id)
 )";
 $query3 = mysqli_query($conn, $table_sql_comment);
 if (!$query3) {
@@ -66,7 +75,7 @@ if (!$query3) {
 }
 
 // إغلاق الاتصال
-// mysqli_close($conn);
+ mysqli_close($conn);
 
 echo "تم تنفيذ جميع العمليات بنجاح!";
 ?>
