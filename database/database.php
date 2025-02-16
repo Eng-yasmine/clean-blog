@@ -58,7 +58,7 @@ if (!$query2) {
 }
 
 // إنشاء جدول comment
-$table_sql_comment = "CREATE TABLE IF NOT EXISTS comment (
+$table_sql_comment = "CREATE TABLE IF NOT EXISTS comments (
     id INT AUTO_INCREMENT PRIMARY KEY,
     content TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -72,6 +72,25 @@ if (!$query3) {
     die("فشل تنفيذ الاستعلام 3: " . mysqli_error($conn));
 } else {
     echo "تم إنشاء جدول comment بنجاح!<br>";
+}
+
+$table_sql_contact = "CREATE TABLE IF NOT EXISTS contacts (
+id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(100) NOT NULL,
+email VARCHAR(50) NOT NULL,
+phone VARCHAR(30) NOT NULL,
+message TEXT NOT NULL,
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+
+
+
+)";
+
+$query4 = mysqli_query($conn , $table_sql_contact);
+if (!$query4) {
+    die("فشل تنفيذ الاستعلام 3: " . mysqli_error($conn));
+} else {
+    echo "تم إنشاء جدول contacts بنجاح!<br>";
 }
 
 // إغلاق الاتصال

@@ -42,14 +42,16 @@ switch ($page) {
     case 'profil':
         include 'view/profil.php';
         break;
-        case 'add_blog':
+    case 'add_blog':
         include 'view/blogs/add_blog.php';
+        break;
+    case 'contact-controller':
+        include 'controllers/contact-controller.php';
         break;
 
     default:
         include 'index.php';
         break;
-
 }
 
 
