@@ -50,7 +50,7 @@ switch ($page) {
         break;
 
     default:
-        include 'index.php';
+        include 'view/maintainence.php';
         break;
 }
 
