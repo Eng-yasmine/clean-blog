@@ -1,4 +1,7 @@
-<?php  include '././inc/nav.php'; ?>
+<?php 
+ include '././inc/nav.php';
+  ?>
+
 <main class="mb-4">
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -7,8 +10,12 @@
                         <div class="my-5">
                             
                            
-                            <form action="./index.php?page=auth_login" method="POST" id="registerForm">
-                            
+                            <form action="index.php?page=auth-login" method="POST" id="registerForm">
+                            <div class="form-floating">
+                                    
+                                    <h2><?php echo successmessage(); ?></h2>
+                                    <h2><?php echo errormessage(); ?></h2>
+                                </div>
                                 <div class="form-floating">
                                     <input class="form-control" name="email" id="email" type="email" placeholder="Enter your email..." />
                                     <label for="email">Email address</label>
@@ -23,7 +30,7 @@
                                 <br />
                                 <button class="btn btn-primary text-uppercase" id="submitButton" type="submit">LOGIN</button>
                             </form>
-                        </div>
+                            </div>
                     </div>
                 </div>
             </div>

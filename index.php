@@ -36,6 +36,9 @@ switch ($page) {
     case 'auth_register':
     include 'controllers/auth/auth_register.php';
             break;
+    case 'auth-login':
+    include 'controllers/auth/auth-login.php';
+            break;
         
     default:
     include 'index.php';
