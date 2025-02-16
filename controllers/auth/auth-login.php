@@ -15,7 +15,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $password = trim(htmlspecialchars(htmlentities($_POST['password'])));
 
     if (empty($email) || empty($password)) {
-        $_SESSION['errors'] = "this field is required" . $_SERVER['HTTP_REFERER'];
+        $_SESSION['errors'] = "this field is required" . $_SERVER['HTTP_PREFERE'];
         exit;
     }
 
@@ -33,7 +33,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     }
 }else{
     $_SESSION['errors'] = "failed to login" ;
-    header("location:" . $_SESSION['HTTP_REFERER']);
+    header("Location:" . $_SERVER['HTTP_REFERER']);
+
     exit;
 }
 
