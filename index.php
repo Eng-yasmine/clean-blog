@@ -19,7 +19,7 @@ switch ($page) {
         include 'view/auth/login.php';
         break;
     case 'logout':
-        include 'view/auth/login.php';
+        include 'controllers/auth/auth_logout.php';
         break;
     case 'blogs':
         include 'view/blogs/index.php';
@@ -36,11 +36,11 @@ switch ($page) {
     case 'auth_register':
         include 'controllers/auth/auth_register.php';
         break;
-    case 'auth-login':
-        include 'controllers/auth/auth-login.php';
+    case 'auth_login':
+        include 'controllers/auth/auth_login.php';
         break;
-    case 'profil':
-        include 'view/profil.php';
+    case 'profile':
+        include 'view/profile.php';
         break;
     case 'add_blog':
         include 'view/blogs/add_blog.php';
