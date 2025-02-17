@@ -1,23 +1,23 @@
 <?php
 
-//error_reporting(E_ALL);
-ini_set('display_errors', 0);
-include '././inc/nav.php';
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 include "././config/db_connection.php";
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    /* echo "request method" . $_SERVER['REQUEST_METHOD'];
-    print_r($_POST);
-    exit; */
-
+    var_dump($_POST);
+   
+    exit; 
+    
     $name = trim(htmlspecialchars($_POST['name']));
     $email = trim(htmlspecialchars($_POST['email']));
     $email = filter_var($email, FILTER_VALIDATE_EMAIL);
     $phone = trim(htmlspecialchars($_POST['phone']));
     $phone = intval($phone);
     $password = trim(htmlspecialchars($_POST['password']));
-
+    
     if (empty($name) || empty($email) || empty($password) || empty($phone)) {
         
         $_SESSION['errors'] = "All fields are required";
@@ -76,3 +76,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     header("Location:" . $_SERVER['HTTP_REFERER']);
     exit;
 }
+
+?>

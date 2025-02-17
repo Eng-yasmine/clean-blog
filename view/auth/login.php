@@ -1,6 +1,3 @@
-<?php 
- include '././inc/nav.php';
-  ?>
 
 <main class="mb-4">
             <div class="container px-4 px-lg-5">

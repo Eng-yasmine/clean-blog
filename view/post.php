@@ -1,4 +1,4 @@
-<?php include 'inc/nav.php' ; ?>
+
         <!-- Post Content-->
         <article class="mb-4">
             <div class="container px-4 px-lg-5">
