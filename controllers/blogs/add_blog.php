@@ -2,9 +2,15 @@
 require_once '../../config/db_connection.php';
 require_once '../../database/database.php';
 
+if(!isset($_SESSION['username'])){
+    header("location:index.php?page=login");
+    exit;
+}
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $title = trim(htmlspecialchars(htmlentities($_POST['title'])));
     $content = trim(htmlspecialchars(htmlentities($_POST['content'])));
+    $user_id =$_SESSION['user_id'];
 
     if (empty($title) || empty($content)) {
         $_SESSION['errors'] = "this field is required";
@@ -24,8 +30,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         header("location:" . $_SERVER['HTTP_REFERER']);
         exit;
     }
+
+    $image_name = "";
+    if(!empty($_FILES['image']['name'])){
+        $image_name = time(). "_" . basename($_FILES['image']['name']);
+        $target_dir = "uploads/"; 
+        $target_file = $target_dir .$image_name ;
+
+        if(move_uploaded_file($_FILES['image']['tmp_name'] , $target_file)){ ;
+        $_SESSION['success'] = "image uploaded" ;
+        exit;
+        }else{
+            $_SESSION['errors'] = " failed uploaded " ;
+            exit;
+        }
+    }
     //insert data to table posts
-    $sql = "INSERT INTO `posts`(id,user_id,title,content,created_at,image) VALUE ('$id','$user_id','$title','$content','$created_at',$image')";
+    $sql = "INSERT INTO `posts`(user_id,title,content,created_at,image) 
+    VALUES ('$user_id','$title','$content','NOW()','$image_name')";
     try {
 
         $query = mysqli_query($conn, $sql);
@@ -39,6 +61,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         header("location:" . $_SERVER['PHP_SELF']);
         exit;
     }
+
+    if($query){
+        header("location:index.php?page=profile");
+        exit;
+    }
+
+
 } else {
     $_SESSION['errors'] = "warning ! please type invalide data";
     header("location:" . $_SERVER['HTTP_REFERER']);
@@ -51,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <main class="container mb-5">
     <div class="row justify-content-center">
         <div class="col-lg-8 col-md-10 mx-auto">
-            <form action="" method="POST">
+            <form action="" method="POST" enctype="multipart/form-data">
                 <h2 class="form-title">Add New Blog Post</h2>
                 <div class="form-group mb-3">
                     <label class="form-label">Blog Title</label>
@@ -60,6 +89,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="form-group mb-3">
                     <label class="form-label">Content</label>
                     <input type="text" name="content" value="<?= isset($update_blog['content']) ? $update_blog['content'] : ""; ?>" class="form-control" placeholder="Enter a short description of the post" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label class="form-label">upload image</label>
+                    <input type="file" name="image" value="<?= isset($update_blog['title']) ? $update_blog['title'] : ""; ?>" class="form-control" placeholder="Enter the post title" required>
                 </div>
                 <?php if (isset($_GET['id'])) : ?>
                     <button type="submit" class="btn btn-primary">UPDATE Blog</button>
