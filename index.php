@@ -1,6 +1,7 @@
 <?php
 require_once 'inc/nav.php';
 require_once 'config/db_connection.php';
+require_once 'helper/session.php' ;
 include './helper/helper.php';
 
 include 'inc/header.php';
@@ -44,7 +45,7 @@ switch ($page) {
         include 'view/profile.php';
         break;
     case 'add_blog':
-        include 'controllers/blogs/add_blog.php';
+        include 'view/blogs/add-blog.php';
         break;
     case 'contact-controller':
         include 'controllers/contact-controller.php';

@@ -17,7 +17,7 @@
                     <button type="submit" class="btn btn-primary">UPDATE Blog</button>
                 <?php else : ?>
                     <button type="submit" class="btn btn-primary">Add Blog</button>
-                <?php endif; ?>
+                <?php endif ;?>
             </form>
 
             <h2 class="text-center">Blog Posts</h2>
