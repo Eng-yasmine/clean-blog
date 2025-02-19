@@ -22,7 +22,7 @@
                                 </div>
                                 <div class="form-floating">
                                     <input class="form-control" name="email" id="email" type="email" placeholder="Enter your email..." />
-                                    <label for="email">Email address</label>
+                                    <label for="text">Email address</label>
                                    
                                 </div>
                                 <div class="form-floating">
