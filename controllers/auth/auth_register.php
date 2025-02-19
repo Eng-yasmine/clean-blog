@@ -7,9 +7,9 @@ include "config/db_connection.php";
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    var_dump($_POST);
+   /*  var_dump($_POST);
    
-    exit; 
+    exit;  */
     
     $name = trim(htmlspecialchars($_POST['name']));
     $email = trim(htmlspecialchars($_POST['email']));
