@@ -1,3 +1,4 @@
+<?php require_once 'config/db_connection.php'; ?>
 
 <main class="container mb-5">
     <div class="row justify-content-center">
@@ -6,11 +7,15 @@
                 <h2 class="form-title">Add New Blog Post</h2>
                 <div class="form-group mb-3">
                     <label class="form-label">Blog Title</label>
-                    <input type="text" name="title" value="<?= isset($update_blog['title']) ? $update_blog['title'] : ""; ?>" class="form-control" placeholder="Enter the post title" required>
+                    <input type="text" name="title" value="<?= isset($update_blog['title']) ? $update_blog['title'] : ""; ?>" class="form-control" placeholder="Enter the post title" >
                 </div>
                 <div class="form-group mb-3">
                     <label class="form-label">Content</label>
-                    <input type="text" name="content" value="<?= isset($update_blog['content']) ? $update_blog['content'] : ""; ?>" class="form-control" placeholder="Enter a short description of the post" required>
+                    <input type="text" name="content" value="<?= isset($update_blog['content']) ? $update_blog['content'] : ""; ?>" class="form-control" placeholder="Enter a short description of the post" >
+                </div>
+                <div class="form-group mb-3">
+                    <label class="form-label"></label>
+                    <input type="file" name="image[]" value="<?= isset($update_blog['image']) ? $update_blog['image'] : ""; ?>" class="form-control" placeholder="Enter a short description of the post" multiple>
                 </div>
                 
                 <?php if (isset($_GET['id'])) : ?>
@@ -26,6 +31,7 @@
                     <tr>
                         <th>Title</th>
                         <th>Content</th>
+                        <th>images</th>
                         <th>Created At</th>
                         <th>Action</th>
                     </tr>
@@ -40,6 +46,7 @@
                         echo "<td>" . $row['title'] . "</td>";
                         echo "<td>" . $row['content'] . "</td>";
                         echo "<td>" . $row['created_at'] . "</td>";
+                        echo "<td><img src=' " . $row['image'] . " 'width='100'></td>";
                         echo "<td>";
                         echo "<a href='?id=" . $row['id'] . "' class='btn btn-success'>UPDATE</a>";
                         echo "<a href='delete_blog.php?id=" . $row['id'] . "' class='btn btn-danger'>DELETE</a>";
@@ -54,4 +61,3 @@
 </body>
 
 </html>
-<?php include '../../inc/footer.php'; ?>

@@ -15,7 +15,7 @@ if (!$conn) {
 if (!mysqli_select_db($conn, DATABASE_NAME)) {
     $sql = "CREATE DATABASE IF NOT EXISTS blogs";
     if (!mysqli_query($conn, $sql)) {
-        die("فشل إنشاء قاعدة البيانات: " . mysqli_error($conn));
+        $_SESSION['errors'] = "query not excuted". mysqli_error($conn);
     }
     mysqli_select_db($conn, DATABASE_NAME);
 }
@@ -34,9 +34,9 @@ $table_sql_user = "CREATE TABLE IF NOT EXISTS users (
 )";
 $query1 = mysqli_query($conn, $table_sql_user);
 if (!$query1) {
-    die("فشل تنفيذ الاستعلام 1: " . mysqli_error($conn));
+    $_SESSION['errors'] = "query not excuted". mysqli_error($conn);
 } else {
-    echo "تم إنشاء جدول users بنجاح!<br>";
+    $_ٍSESSION['success'] = "users table success created ";
 }
 
 // إنشاء جدول posts
@@ -52,9 +52,9 @@ $table_sql_post = "CREATE TABLE IF NOT EXISTS posts (
 )";
 $query2 = mysqli_query($conn, $table_sql_post);
 if (!$query2) {
-    die("فشل تنفيذ الاستعلام 2: " . mysqli_error($conn));
+    $_SESSION['errors'] = "query not excuted". mysqli_error($conn);
 } else {
-    echo "تم إنشاء جدول posts بنجاح!<br>";
+    $_ٍSESSION['success'] = "posts table success created ";
 }
 
 // إنشاء جدول comment
@@ -69,9 +69,9 @@ $table_sql_comment = "CREATE TABLE IF NOT EXISTS comments (
 )";
 $query3 = mysqli_query($conn, $table_sql_comment);
 if (!$query3) {
-    die("فشل تنفيذ الاستعلام 3: " . mysqli_error($conn));
+    $_SESSION['errors'] = "query not excuted". mysqli_error($conn);
 } else {
-    echo "تم إنشاء جدول comment بنجاح!<br>";
+    $_ٍSESSION['success'] = "comment table success created ";
 }
 
 $table_sql_contact = "CREATE TABLE IF NOT EXISTS contacts (
@@ -88,13 +88,13 @@ created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 
 $query4 = mysqli_query($conn , $table_sql_contact);
 if (!$query4) {
-    die("فشل تنفيذ الاستعلام 3: " . mysqli_error($conn));
+    $_SESSION['errors'] = "query not excuted". mysqli_error($conn);
 } else {
-    echo "تم إنشاء جدول contacts بنجاح!<br>";
+   $_ٍSESSION['success'] = "contacts table success created ";
 }
 
 // إغلاق الاتصال
  mysqli_close($conn);
 
-echo "تم تنفيذ جميع العمليات بنجاح!";
+
 ?>

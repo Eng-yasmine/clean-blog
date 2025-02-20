@@ -1,7 +1,7 @@
 <?php
+require_once 'helper/session.php' ;
 require_once 'inc/nav.php';
 require_once 'config/db_connection.php';
-require_once 'helper/session.php' ;
 include './helper/helper.php';
 
 include 'inc/header.php';

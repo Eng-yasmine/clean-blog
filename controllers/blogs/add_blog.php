@@ -53,34 +53,43 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     $image_name = "";
+    
     if (isset($_FILES['image'])) {
-        $image = $_FILES['image'];
-        $name = $_FILES['name'];
-        $tmp = $_FILES['tmp_name'];
-        $error = $_FILES['error'];
-        $size = $_FILES['size'];
+       /* var_dump($_FILES); */
+       $tmp = $_FILES['image']['tmp_name'];
+       $image = $_FILES['image']['name'];
 
+       foreach($_FILES['image'] as $key => $value){
+         $image_name =$_FILES['image']['name'][$key];
+         $image_ext = $_FILES['image']['type'][$key];
+         $image_ext = explode("/" , $image_ext )[1];
 
-        $allowed_image = ['jpg','png','jpeg','gif'];
+         
+       }
+       $allowed_image = ['jpg','png','jpeg','gif'];
 
-        $image_ext = strtolower( pathinfo($image['name'] , PATHINFO_EXTENSION));
+       if(!in_array($image_ext , $allowed_image)){
+        $_SESSION['errors'] = "sorry ! this extention not supported";
+        header("locatin:". $_SERVER['HTTP_REFERER']);
+        exit ;
+    }
+    
+            if($_FILES['image']['size'] >500000){
+                $_SESSION['errors'] ="sorry ! image size too large" ;
+                header("location:". $_SERVER['HTTP_REFERER']);
+                exit;
+            }
+           
+       $target_dir = move_uploaded_file($tmp , "assets/img/" . $image_name. ".". $image_ext) ;
+       
 
-        if($image['size'] >500000){
-            $_SESSION['errors'] ="sorry ! image size too large" ;
-            header("location:". $_SERVER['HTTP_REFERER']);
-            exit;
-        }
-        if(!in_array($image_ext , $allowed_image)){
-            $_SESSION['errors'] = "sorry ! this extention not supported";
-            header("locatin:". $_SERVER['HTTP_REFERER']);
-            exit ;
-        }
+       
     }
 
     //update data if is set id 
 
     if (isset($_GET['id'])) {
-        $sql = "UPDATE posts SET title='$title' , content='$content' WHERE id='$id'";
+        $sql = "UPDATE posts SET title='$title' , content='$content' , 'image=' $image_name . $image_ext' WHERE id='$id'";
         try {
 
             $query = mysqli_query($conn, $sql);
@@ -97,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         //insert data to table posts
         $sql = "INSERT INTO `posts`(user_id,title,content,created_at,image) 
-    VALUES ('$user_id','$title','$content','NOW()','$image_name')";
+    VALUES ('$user_id','$title','$content',NOW(),'$image_name')";
         try {
 
             $query = mysqli_query($conn, $sql);
@@ -117,7 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             exit;
         }
     }
-} else {
+}else {
     $_SESSION['errors'] = "warning ! please type invalide data";
     header("location:" . $_SERVER['HTTP_REFERER']);
     exit;
