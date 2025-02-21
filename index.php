@@ -54,6 +54,9 @@ switch ($page) {
     case 'contact-controller':
         include 'controllers/contact-controller.php';
         break;
+        case 'control_update_blog':
+        include 'controllers/blogs/control_update_blog.php';
+        break;
 
     default:
         include 'view/maintainence.php';
