@@ -2,14 +2,14 @@
 error_reporting(E_ALL);
 ini_set('display_errors',1);
 require_once 'config/db_connection.php';
-echo "welcome in your profile" ;
+
 ?>
 
 <main class="container mb-5">
     <div class="row justify-content-center">
         <div class="col-lg-8 col-md-10 mx-auto">
             <form action="index.php?page=add-blog" method="POST" enctype="multipart/form-data">
-                <h2 class="form-title"><?php echo $_SESSION['username'] ;   ?></h2>
+                <h2 class="form-title"><?php echo "welcome " . $_SESSION['username'] . " in your profile" ;   ?></h2>
                 <div class="form-group mb-3">
                     <label class="form-label"></label>
             <table class="table table-striped table-bordered">
@@ -34,11 +34,12 @@ echo "welcome in your profile" ;
                         echo "<td>" . $row['created_at'] . "</td>";
                         echo "<td><img src=' " . $row['image'] . " 'width='100'></td>";
                         echo "<td>";
+                        if(isset($_SESSION['username'])){
                         echo "<a href='?id=" .  $row['id']  . "' class='btn btn-success'>UPDATE</a>";
                         echo "<a href='delete_blog.php?id=" . $row['id'] . "' class='btn btn-danger'>DELETE</a>";
                         echo "</td>";
                         echo "</tr>";
-                    }
+                    }}
                     ?>
                 </tbody>
             </table>

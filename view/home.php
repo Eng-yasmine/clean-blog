@@ -33,20 +33,24 @@ if(!$query){
                       ?>
                     <div class="post-preview">
                         <a href="index.php?page=post&id=<?= $row['id']  ?>">
-                            <h2 class="post-title"><?= $row['title']  ?></h2>
-                            <h3 class="post-subtitle"><?= $row['content']  ?></h3>
-                        </a>
-                        <p class="post-meta">
+                            <h2 class="post-title"><?= $row['title']  ?> </h2>
+                            <h3 class="post-subtitle"> <?= $row['content']  ?></h3>
+                            <?php if(isset($_SESSION['username'])) : ?>
+                            <a  href="index.php?page=profile&user=<?= $row['id']  ?>"> edit</a>
+                            <a  href="index.php?page=profile&user=<?= $row['id']  ?>"> delete</a>
+                         </a> 
+                         <?php endif ; ?>
+                         <p class="post-meta">
                             Posted by
-                            <a href="index.php?page=profile&user="><?= $row['name']  ?> </a>
+                            <a  href="index.php?page=profile&user="> <?=   $row['name']  ?> </a>
                             on  <?= $row['created_at']  ?>  </p>  
-                    </div>
+                     </div>
                   
                     <!-- Divider-->
-                    <hr class="my-4" />
-                  <?php endwhile; ?>
-                    <!-- Pager-->
-                    <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div>
-                </div>
-            </div>
-        </div>
+                     <hr class="my-4" />
+                   <?php endwhile; ?>
+                     <!-- Pager-->
+                     <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div>
+                 </div>
+             </div>
+         </div>
