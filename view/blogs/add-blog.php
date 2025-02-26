@@ -1,11 +1,17 @@
-<?php require_once 'config/db_connection.php'; ?>
+<?php
+ require_once 'config/db_connection.php'; 
+ require_once 'helper/session.php'; 
+ ?>
+
 
 <main class="container mb-5">
     <div class="row justify-content-center">
         <div class="col-lg-8 col-md-10 mx-auto">
-            <form action="index.php?page=add_blog" method="POST" enctype="multipart/form-data">
-                <h2 class="form-title">Add New Blog Post</h2>
-                <div class="form-group mb-3">
+            <form action="<?= isset($_GET['id']) ? 'index.php?page=update_blog&id=' .$_GET['id'] : 'index.php?page=add_blog' ?>" method="POST" enctype="multipart/form-data">
+               <h2 class="form-title">Add New Blog Post</h2>
+                <?= successmessage(); ?>
+                <?= errormessage(); ?>
+               <div class="form-group mb-3">
                     <label class="form-label">Blog Title</label>
                     <input type="text" name="title" value="<?= isset($update_blog['title']) ? $update_blog['title'] : ""; ?>" class="form-control" placeholder="Enter the post title" >
                 </div>
@@ -19,7 +25,8 @@
                 </div>
                 
                 <?php if (isset($_GET['id'])) : ?>
-                    <button type="submit" class="btn btn-primary">UPDATE Blog</button>
+                <button type="submit" class="btn btn-primary">Update Blog</button>
+
                 <?php else : ?>
                     <button type="submit" class="btn btn-primary">Add Blog</button>
                 <?php endif ;?>
@@ -48,8 +55,10 @@
                         echo "<td>" . $row['created_at'] . "</td>";
                         echo "<td><img src=' " . $row['image'] . " 'width='100'></td>";
                         echo "<td>";
-                        echo "<a href='?id=" . $row['id'] . "' class='btn btn-success'>UPDATE</a>";
+                        if(isset($_SESSION['username'])){
+                        echo "<a href='index.php?page=add_blog&id=". $row['id'] . "' class='btn btn-success'>UPDATE</a>";
                         echo "<a href='delete_blog.php?id=" . $row['id'] . "' class='btn btn-danger'>DELETE</a>";
+                        }
                         echo "</td>";
                         echo "</tr>";
                     }

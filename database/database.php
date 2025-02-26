@@ -71,7 +71,9 @@ $query3 = mysqli_query($conn, $table_sql_comment);
 if (!$query3) {
     $_SESSION['errors'] = "query not excuted". mysqli_error($conn);
 } else {
+
     $_ٍSESSION['success'] = "comment table success created ";
+    var_dump($_ٍSESSION['success']);
 }
 
 $table_sql_contact = "CREATE TABLE IF NOT EXISTS contacts (
@@ -92,7 +94,6 @@ if (!$query4) {
 } else {
    $_ٍSESSION['success'] = "contacts table success created ";
 }
-
 // إغلاق الاتصال
  mysqli_close($conn);
 

@@ -35,14 +35,10 @@ if(!$query){
                         <a href="index.php?page=post&id=<?= $row['id']  ?>">
                             <h2 class="post-title"><?= $row['title']  ?> </h2>
                             <h3 class="post-subtitle"> <?= $row['content']  ?></h3>
-                            <?php if(isset($_SESSION['username'])) : ?>
-                            <a  href="index.php?page=profile&user=<?= $row['id']  ?>"> edit</a>
-                            <a  href="index.php?page=profile&user=<?= $row['id']  ?>"> delete</a>
-                         </a> 
-                         <?php endif ; ?>
+                          
                          <p class="post-meta">
                             Posted by
-                            <a  href="index.php?page=profile&user="> <?=   $row['name']  ?> </a>
+                            <a  href="index.php?page=profile"> <?=   $row['name']  ?> </a>
                             on  <?= $row['created_at']  ?>  </p>  
                      </div>
                   

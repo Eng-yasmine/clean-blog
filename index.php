@@ -8,8 +8,6 @@ include 'inc/header.php';
 
 $page = isset($_GET['page']) ? $_GET['page'] : 'home';
 
-//var_dump($_SERVER['REQUEST_URI']);
-//$content = "";
 switch ($page) {
     case 'home':
         include 'view/home.php';
@@ -54,8 +52,11 @@ switch ($page) {
     case 'contact-controller':
         include 'controllers/contact-controller.php';
         break;
-        case 'control_update_blog':
-        include 'controllers/blogs/control_update_blog.php';
+        case 'update_blog':
+        include 'controllers/blogs/update_blog.php';
+        break;
+        case 'delete_blog':
+        include 'controllers/blogs/delete_blog.php';
         break;
 
     default:

@@ -9,7 +9,7 @@ try{
         header("location:maintainence.php");
         exit ;
     }
-} catch(Exception $ex){
+}catch(Exception $ex){
     header("location:maintainence.php");
         exit ;
 

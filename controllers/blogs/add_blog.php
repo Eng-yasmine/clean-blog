@@ -61,11 +61,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if (!in_array($image_ext, $allowed_image)) {
             $_SESSION['errors'] = "sorry ! this extention not supported";
-            header("locatin:" . $_SERVER['HTTP_REFERER']);
+            header("location:" . $_SERVER['HTTP_REFERER']);
             exit;
         }
 
-        if ($image_size > 500000) {
+        if ($image_size > 5000000) {
             $_SESSION['errors'] = "sorry ! image size too large";
             header("location:" . $_SERVER['HTTP_REFERER']);
             exit;
@@ -76,11 +76,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $image_name = $time_of_upload;
     }
 
-    $user_id = $_SESSION['user_id'] ?? null;
+    $user_id = isset($_SESSION['user_id'])?$_SESSION['user_id'] : null;
     //update data if is set id 
 
     if (isset($_GET['id'])) {
-        $sql = "UPDATE posts SET title='$title' , content='$content' , 'image=' $image_name . $image_ext' WHERE id='$id'";
+        $sql = "UPDATE posts SET title='$title' , content='$content' , image= '$image_name' WHERE id='$id'";
         try {
 
             $query = mysqli_query($conn, $sql);
@@ -97,8 +97,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         //insert data to table posts
         $sql = "INSERT INTO `posts` (user_id,title,content,created_at,image) 
-    VALUES ('$user_id','$title','$content',NOW(),'$image_name . $image_ext')";
-    var_dump($sql);
+    VALUES ('$user_id','$title','$content',NOW(),'$image_name')";
+    /* var_dump($sql); */
         try {
 
             $query = mysqli_query($conn, $sql);
@@ -114,6 +114,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         if ($query) {
+            
+        $_SESSION['success'] = "POST added successfully";
             header("location:".$_SERVER['PHP_SELF']);
             exit;
         }
