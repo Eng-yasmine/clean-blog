@@ -4,23 +4,22 @@ const USER_NAME = "root";
 const PASSWORD = "";
 const DATABASE_NAME = "blogs";
 
-// الاتصال بقاعدة البيانات
+
 $conn = mysqli_connect(SERVER_NAME, USER_NAME, PASSWORD);
 
 if (!$conn) {
-    die("فشل الاتصال: " . mysqli_connect_error());
+    die("connection failed : " . mysqli_connect_error());
 }
 
-// إنشاء قاعدة البيانات إذا لم تكن موجودة
+
 if (!mysqli_select_db($conn, DATABASE_NAME)) {
     $sql = "CREATE DATABASE IF NOT EXISTS blogs";
     if (!mysqli_query($conn, $sql)) {
-        $_SESSION['errors'] = "query not excuted". mysqli_error($conn);
+        $_SESSION['errors'] = "query not executed". mysqli_error($conn);
     }
     mysqli_select_db($conn, DATABASE_NAME);
-}
 
-// إنشاء جدول users
+
 $table_sql_user = "CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     phone VARCHAR(25),
@@ -39,7 +38,7 @@ if (!$query1) {
     $_ٍSESSION['success'] = "users table success created ";
 }
 
-// إنشاء جدول posts
+
 $table_sql_post = "CREATE TABLE IF NOT EXISTS posts (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL ,
@@ -57,7 +56,7 @@ if (!$query2) {
     $_ٍSESSION['success'] = "posts table success created ";
 }
 
-// إنشاء جدول comment
+
 $table_sql_comment = "CREATE TABLE IF NOT EXISTS comments (
     id INT AUTO_INCREMENT PRIMARY KEY,
     content TEXT,
@@ -94,7 +93,7 @@ if (!$query4) {
 } else {
    $_ٍSESSION['success'] = "contacts table success created ";
 }
-// إغلاق الاتصال
+
  mysqli_close($conn);
 
 

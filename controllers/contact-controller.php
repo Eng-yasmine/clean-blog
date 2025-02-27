@@ -61,6 +61,8 @@ try{
         exit;
     }else{
         $_SESSION['success'] = "success contact" ;
+        header("location:". $_SERVER['HTTP_REFERER']);
+        exit;
     }
 }catch(Exception $ex){
     header("location:index.php?page=contact");

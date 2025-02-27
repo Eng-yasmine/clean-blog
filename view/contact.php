@@ -34,7 +34,12 @@
                             <!-- https://startbootstrap.com/solution/contact-forms-->
                             <!-- to get an API token!-->
                             <form action="index.php?page=contact-controller" method="POST" id="contactForm" data-sb-form-api-token="API_TOKEN">
-                                <div class="form-floating">
+                            <div class="form-floating">
+                                    
+                                    <h2><?= successmessage(); ?></h2>
+                                    <h2><?=  errormessage(); ?></h2>
+                                </div>
+                            <div class="form-floating">
                                     <input class="form-control" id="name" name="name" type="text" placeholder="Enter your name..." />
                                     <label for="name">Name</label>
                                     <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>

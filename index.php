@@ -48,6 +48,9 @@ switch ($page) {
     case 'add_blog':
         include 'controllers/blogs/add_blog.php';
         break;
+    case 'add_comment':
+        include 'controllers/blogs/add_comment.php';
+        break;
 
     case 'contact-controller':
         include 'controllers/contact-controller.php';

@@ -1,25 +1,35 @@
 <?php
 error_reporting(E_ALL);
-ini_set('display_errors',1);
+ini_set('display_errors', 1);
 require_once 'config/db_connection.php';
 
+if (!isset($_SESSION['username'])) {
+    header("location:index.php?page=login");
+    exit;
+}
 ?>
 
 <main class="container mb-5">
     <div class="row justify-content-center">
         <div class="col-lg-8 col-md-10 mx-auto">
-            <form action="index.php?page=add-blog" method="POST" enctype="multipart/form-data">
-                <h2 class="form-title"><?php echo "welcome " . $_SESSION['username'] . " in your profile" ;   ?></h2>
-                <div class="form-group mb-3">
-                    <label class="form-label"></label>
+            <h2 class="form-title"><?php echo "Welcome, " . $_SESSION['username'] . " to your profile"; ?></h2>
+            
+            <?php if (isset($_SESSION['errors'])): ?>
+                <div class="alert alert-danger"><?php echo $_SESSION['errors']; unset($_SESSION['errors']); ?></div>
+            <?php endif; ?>
+
+            <?php if (isset($_SESSION['success'])): ?>
+                <div class="alert alert-success"><?php echo $_SESSION['success']; unset($_SESSION['success']); ?></div>
+            <?php endif; ?>
+
             <table class="table table-striped table-bordered">
                 <thead>
                     <tr>
                         <th>Title</th>
                         <th>Content</th>
-                        <th>images</th>
+                        <th>Image</th>
                         <th>Created At</th>
-                        <th>Action</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,29 +39,24 @@ require_once 'config/db_connection.php';
 
                     while ($row = mysqli_fetch_assoc($query)) {
                         echo "<tr>";
-                        echo "<td>" . $row['title'] . "</td>";
-                        echo "<td>" . $row['content'] . "</td>";
+                        echo "<td>" . htmlspecialchars($row['title']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['content']) . "</td>";
+                        echo "<td><img src='assets/img/" . $row['image'] . "' width='100'></td>";
                         echo "<td>" . $row['created_at'] . "</td>";
-                        echo "<td><img src=' " . $row['image'] . " 'width='100'></td>";
                         echo "<td>";
-                        if(isset($_SESSION['username'])){
-                        echo "<a href=index.php?page=update_blog&id=" .  $row['id']  . "' class='btn btn-success'>UPDATE</a>";
-                        echo "<a href='index.php?page=delete_blog&id=" . $row['id'] . "' class='btn btn-danger'>DELETE</a>";
+                        echo "<a href='index.php?page=update_blog&id=" . $row['id'] . "' class='btn btn-success'>Update</a> ";
+                        echo "<a href='index.php?page=delete_blog&id=" . $row['id'] . "' class='btn btn-danger'>Delete</a>";
                         echo "</td>";
                         echo "</tr>";
-                    }}
+                    }
                     ?>
                 </tbody>
             </table>
-             
-                    <button type="submit" class="btn btn-primary"> new Blog</button>
-           
-            </form>
-            </div>
+
+            <a href="index.php?page=add-blog" class="btn btn-primary">New Blog</a>
+        </div>
+    </div>
 </main>
-</body>
-
-
 
 
 
