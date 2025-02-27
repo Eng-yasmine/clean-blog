@@ -35,8 +35,8 @@ require_once 'config/db_connection.php';
                         echo "<td><img src=' " . $row['image'] . " 'width='100'></td>";
                         echo "<td>";
                         if(isset($_SESSION['username'])){
-                        echo "<a href='?id=" .  $row['id']  . "' class='btn btn-success'>UPDATE</a>";
-                        echo "<a href='delete_blog.php?id=" . $row['id'] . "' class='btn btn-danger'>DELETE</a>";
+                        echo "<a href=index.php?page=update_blog&id=" .  $row['id']  . "' class='btn btn-success'>UPDATE</a>";
+                        echo "<a href='index.php?page=delete_blog&id=" . $row['id'] . "' class='btn btn-danger'>DELETE</a>";
                         echo "</td>";
                         echo "</tr>";
                     }}
